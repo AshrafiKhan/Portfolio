@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ashrafi Khan Pathan — WordPress Developer</title>
+    <meta
+      name="description"
+      content="Ashrafi Khan Pathan is a WordPress Developer in Gujarat, India specializing in Figma-to-WordPress builds, Elementor Pro, ACF, WooCommerce, SEO-friendly structure, and performance-focused websites."
+    />
+    <meta name="author" content="Ashrafi Khan Pathan" />
+    <meta
+      property="og:title"
+      content="Ashrafi Khan Pathan — WordPress Developer"
+    />
+    <meta
+      property="og:description"
+      content="WordPress Developer specializing in fast, responsive, SEO-friendly Figma-to-WordPress websites with Elementor Pro, ACF, and WooCommerce."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Ashrafi Khan Pathan — WordPress Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="WordPress Developer specializing in fast, responsive, SEO-friendly Figma-to-WordPress websites."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.classList.add("light-mode");
+        }
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="load-screen" id="loadScreen" aria-hidden="true">
+      <div class="load-orb"></div>
+      <div class="load-label">SCOUTER ONLINE</div>
+      <div class="load-power"><span id="loadPowerNum">0</span></div>
+      <div class="load-bar">
+        <div class="load-bar-fill" id="loadBarFill"></div>
+      </div>
+    </div>
+
+    <div class="kame-wave" id="kameWave" aria-hidden="true"></div>
+
+    <div class="noise" aria-hidden="true"></div>
+    <div class="grid-glow" aria-hidden="true"></div>
+    <div class="ki-field" id="kiField" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+
+    <nav>
+      <div class="wrap">
+        <div class="logo">AK<span>.</span>Pathan</div>
+        <div class="navlinks" id="navlinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle light and dark theme"
+            aria-pressed="false"
+          >
+            <span class="knob"></span>
+          </button>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="navlinks"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <div class="eyebrow">Gujarat, India</div>
+          <h1 class="name">
+            Ashrafi Khan<br /><span class="grad">Pathan</span>
+          </h1>
+          <div class="role-line">
+            WordPress Developer · Remote-Ready · SEO-Focused<span
+              class="cursor"
+            ></span>
+          </div>
+          <p class="summary">
+            2.5+ years turning Figma files into pixel-perfect, fast-loading
+            WordPress sites. Currently building and maintaining 15+ live
+            websites at MadeByAura, with AI tools like Claude Code woven into
+            the daily workflow.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#contact">Get in touch</a>
+            <a class="btn" href="Ashrafi_Khan_Resume.pdf" download>Download Resume</a>
+            <a class="btn" href="#experience">See experience</a>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="glass-card" id="tiltCard">
+            <div class="float-chip c1">Elementor Pro</div>
+            <div class="float-chip c2">40% faster loads</div>
+            <div class="glass-inner">
+              <div class="bar">
+                <span class="dot"></span><span class="dot"></span
+                ><span class="dot"></span>
+                <span class="url">ashrafi-pathan.dev</span>
+              </div>
+              <div class="code">
+                <div><span class="ln">01</span><span class="kw">const</span> dev = {</div>
+                <div><span class="ln">02</span>  role: <span class="str">"WordPress Developer"</span>,</div>
+                <div><span class="ln">03</span>  stack: [<span class="str">"Elementor"</span>, <span class="str">"ACF"</span>, <span class="str">"WooCommerce"</span>],</div>
+                <div><span class="ln">04</span>  sitesLive: <span class="fn">15</span>,</div>
+                <div><span class="ln">05</span>  loadSpeed: <span class="fn">"+40%"</span>, <span class="cmt">// optimized</span></div>
+                <div><span class="ln">06</span>  status: <span class="str">"open to opportunities"</span></div>
+                <div><span class="ln">07</span>};</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="about">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Profile</div>
+          <h2 class="sec-title">About</h2>
+        </div>
+        <div class="about-grid reveal">
+          <div class="about-text">
+            <p>
+              WordPress Developer with 2.5+ years of hands-on experience working
+              with agencies and remote teams, specialized in pixel-perfect
+              Figma-to-WordPress conversion, responsive development, and
+              SEO-first, performance-optimized websites.
+            </p>
+            <p>
+              Proven ability to manage and maintain multiple live websites,
+              collaborate with designers, and deliver reliable results in WFH
+              environments — actively integrating AI tools like Claude Code,
+              ChatGPT, and Gemini into daily development for faster debugging
+              and smarter code review.
+            </p>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-num" data-target="2.5" data-suffix="+">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-target="10" data-suffix="+">0</div>
+              <div class="stat-label">Sites Built</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-target="15" data-suffix="+">0</div>
+              <div class="stat-label">Sites Maintained</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-target="40" data-suffix="%">0</div>
+              <div class="stat-label">Avg. Speed Gain</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Toolkit</div>
+          <h2 class="sec-title">Skills</h2>
+        </div>
+        <div class="skill-groups reveal">
+          <div class="skill-card">
+            <h3>WordPress</h3>
+            <div class="chip-row">
+              <span class="chip">Elementor Pro</span
+              ><span class="chip">ACF</span
+              ><span class="chip">WooCommerce</span>
+              <span class="chip">Custom Themes</span
+              ><span class="chip">Custom Plugins</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Frontend</h3>
+            <div class="chip-row">
+              <span class="chip">HTML5</span><span class="chip">CSS3</span
+              ><span class="chip">JavaScript</span>
+              <span class="chip">Bootstrap</span
+              ><span class="chip">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Backend</h3>
+            <div class="chip-row">
+              <span class="chip">PHP</span><span class="chip">MySQL</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Other</h3>
+            <div class="chip-row">
+              <span class="chip">jQuery</span><span class="chip">AJAX</span
+              ><span class="chip">Git</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Practices</h3>
+            <div class="chip-row">
+              <span class="chip">SEO-Friendly Dev</span
+              ><span class="chip">Responsive Design</span
+              ><span class="chip">Performance Optimization</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>AI Tools</h3>
+            <div class="chip-row">
+              <span class="chip">Claude Code</span
+              ><span class="chip">ChatGPT</span
+              ><span class="chip">Gemini Deep Research</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Career</div>
+          <h2 class="sec-title">Experience</h2>
+        </div>
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-top">
+                <span class="tl-role">WordPress Developer (WFH)</span
+                ><span class="tl-date">March 2024 – Present</span>
+              </div>
+              <div class="tl-org">MadeByAura</div>
+              <ul>
+                <li>
+                  Developed 10+ WordPress websites from Figma designs with
+                  pixel-perfect accuracy and full responsiveness.
+                </li>
+                <li>
+                  Maintaining 15+ live websites, handling updates, bug fixes,
+                  and performance improvements.
+                </li>
+                <li>
+                  Improved average website load speed by ~40% using optimization
+                  best practices.
+                </li>
+                <li>
+                  Built SEO-friendly page structures using proper HTML tags,
+                  clean code, and fast-loading layouts.
+                </li>
+                <li>
+                  Worked with Elementor Pro and ACF to create scalable,
+                  client-friendly page management.
+                </li>
+                <li>
+                  Maintained WooCommerce websites and used Git for version
+                  control in a remote setup.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-top">
+                <span class="tl-role">Web Development Training</span
+                ><span class="tl-date">Oct 2023 – Dec 2023</span>
+              </div>
+              <div class="tl-org">ConicPlex</div>
+              <ul>
+                <li>
+                  Real-world development exposure working on live WordPress and
+                  PHP-based projects.
+                </li>
+                <li>
+                  Strengthened fundamentals of frontend-backend integration and
+                  debugging.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-top">
+                <span class="tl-role">Web Developer Intern</span
+                ><span class="tl-date">Dec 2022 – May 2023</span>
+              </div>
+              <div class="tl-org">HATKESH InfoTech Pvt. Ltd.</div>
+              <ul>
+                <li>
+                  Sole web developer for a grocery store website project —
+                  frontend and backend with PHP and MySQL.
+                </li>
+                <li>
+                  Implemented dynamic features such as product catalog, cart
+                  functionality, and user accounts.
+                </li>
+                <li>
+                  Gained practical experience handling the complete project
+                  lifecycle.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Highlights</div>
+          <h2 class="sec-title">Project Highlights</h2>
+        </div>
+        <div class="proj-grid reveal">
+          <div class="proj-card">
+            <span class="proj-tag">Team Project</span>
+            <h3>Multi-Dashboard Migration</h3>
+            <p>
+              Led the conversion of a multi-dashboard microsite into a unified
+              single-dashboard architecture, with a custom ACF setup to
+              dynamically display location-specific content across regions.
+            </p>
+          </div>
+          <div class="proj-card">
+            <span class="proj-tag">Solo · Agency Handover</span>
+            <h3>Full Website Rebuild</h3>
+            <p>
+              Independently rebuilt a complete WordPress website originally
+              built by an external agency, maintaining pixel-perfect design
+              parity with the live site using Elementor.
+            </p>
+          </div>
+          <div class="proj-card">
+            <span class="proj-tag">Solo · From Figma</span>
+            <h3>Mobile Navigation System</h3>
+            <p>
+              Built a fully functional mobile navigation system from scratch
+              based on Figma mockups — responsive, production-ready, and
+              consistent across devices.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="certifications">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Learning</div>
+          <h2 class="sec-title">Certifications</h2>
+        </div>
+        <div class="cert-list reveal">
+          <div class="cert-item">
+            <span class="cname"
+              >Build Responsive Real World Portfolio WordPress Website —
+              Udemy</span
+            ><span class="cdate">Jan 2024</span>
+          </div>
+          <div class="cert-item">
+            <span class="cname"
+              >WordPress Crash Course: Build any Website in Minutes —
+              Udemy</span
+            ><span class="cdate">Sep 2023</span>
+          </div>
+          <div class="cert-item">
+            <span class="cname"
+              >Web Development Wizardry: HTML & CSS for Beginners — Udemy</span
+            ><span class="cdate">Jan 2024</span>
+          </div>
+          <div class="cert-item">
+            <span class="cname">Learn Bootstrap – For Beginners — Udemy</span
+            ><span class="cdate">Jan 2024</span>
+          </div>
+          <div class="cert-item">
+            <span class="cname">Git for Beginners — Udemy</span
+            ><span class="cdate">Jan 2024</span>
+          </div>
+          <div class="cert-item">
+            <span class="cname">UI/UX Basic — AT&T E-Learning</span
+            ><span class="cdate">Feb 2024</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="sec-head reveal">
+          <div class="sec-eyebrow">Background</div>
+          <h2 class="sec-title">Education &amp; Languages</h2>
+        </div>
+        <div class="edu-lang reveal">
+          <div class="edu-card">
+            <h3>B.Tech in Computer Engineering</h3>
+            <div class="school">BVM Engineering College, Gujarat</div>
+            <div class="yr">Completed 2025</div>
+          </div>
+          <div class="lang-card">
+            <h3>Languages</h3>
+            <div class="lang-row"><span>English</span></div>
+            <div class="lang-row"><span>Hindi</span></div>
+            <div class="lang-row"><span>Gujarati</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-card reveal">
+          <h2>Let's build something reliable.</h2>
+          <p>
+            Open to remote and on-site WordPress opportunities. Reach out for
+            collaborations, freelance work, or a full-time role.
+          </p>
+          <div class="contact-links">
+            <a class="btn primary" href="mailto:pathanashrafi2709@gmail.com"
+              >Email Me</a
+            >
+            <a class="btn" href="resume.pdf" download>Download Resume</a>
+            <a class="btn" href="tel:+917698295291">+91 76982 95291</a>
+            <a
+              class="btn"
+              href="https://github.com/AshrafiKhan"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+            <a
+              class="btn"
+              href="https://linkedin.com/in/ashrafi-khan-pathan-2824891b2"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Designed &amp; built by Ashrafi Khan Pathan · Gujarat, India
+      <span class="footer-egg">Scouter-tested. Power level: infinite.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
