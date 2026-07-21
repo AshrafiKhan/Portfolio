@@ -1,92 +1,5 @@
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Custom cursor — ki-energy dot + trailing aura ring (desktop/mouse only)
-  const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
-  if(hasFinePointer){
-    document.documentElement.classList.add('custom-cursor');
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorRing = document.getElementById('cursorRing');
-
-    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-    let ringX = mouseX, ringY = mouseY;
-    let started = false;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
-      if(!started){
-        started = true;
-        cursorDot.classList.add('show');
-        cursorRing.classList.add('show');
-      }
-    });
-
-    document.addEventListener('mouseleave', () => {
-      cursorDot.classList.remove('show');
-      cursorRing.classList.remove('show');
-    });
-    document.addEventListener('mouseenter', () => {
-      cursorDot.classList.add('show');
-      cursorRing.classList.add('show');
-    });
-
-    function ringLoop(){
-      const ease = prefersReduced ? 1 : 0.18;
-      ringX += (mouseX - ringX) * ease;
-      ringY += (mouseY - ringY) * ease;
-      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
-      requestAnimationFrame(ringLoop);
-    }
-    ringLoop();
-
-    const hoverSelector = 'a, button, .btn, .chip, .nav-toggle, .skill-card, .proj-card, ' +
-      '.tl-card, .stat-card, .cert-item, .edu-card, .lang-card, .contact-card, .glass-card';
-    document.addEventListener('mouseover', (e) => {
-      if(e.target.closest(hoverSelector)){
-        cursorRing.classList.add('hovering');
-        cursorDot.classList.add('hovering');
-      }
-    });
-    document.addEventListener('mouseout', (e) => {
-      if(e.target.closest(hoverSelector)){
-        cursorRing.classList.remove('hovering');
-        cursorDot.classList.remove('hovering');
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      const burst = document.createElement('div');
-      burst.className = 'ki-burst';
-      burst.style.left = e.clientX + 'px';
-      burst.style.top = e.clientY + 'px';
-      document.body.appendChild(burst);
-      setTimeout(() => burst.remove(), 650);
-    });
-  }
-
-  // Touch support — same ki-energy effect on tap and finger-scroll for mobile
-  function spawnBurst(x, y, small){
-    const burst = document.createElement('div');
-    burst.className = 'ki-burst';
-    if(small) burst.style.width = burst.style.height = '6px';
-    burst.style.left = x + 'px';
-    burst.style.top = y + 'px';
-    document.body.appendChild(burst);
-    setTimeout(() => burst.remove(), 650);
-  }
-
-  let lastTouchTrail = 0;
-  document.addEventListener('touchstart', (e) => {
-    for(const t of e.touches) spawnBurst(t.clientX, t.clientY, false);
-  }, { passive: true });
-
-  document.addEventListener('touchmove', (e) => {
-    const now = performance.now();
-    if(now - lastTouchTrail < 70) return; // throttle trail while scrolling/dragging
-    lastTouchTrail = now;
-    for(const t of e.touches) spawnBurst(t.clientX, t.clientY, true);
-  }, { passive: true });
-
   // Ki energy field — Vegeta-inspired continuous ambient animation
   const kiField = document.getElementById('kiField');
   if(kiField && !prefersReduced){
@@ -319,7 +232,6 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
           requestAnimationFrame(tick);
         }else{
           wave.classList.remove('active');
-          spawnBurst(window.innerWidth / 2, offset + 16, false);
         }
       }
       requestAnimationFrame(tick);

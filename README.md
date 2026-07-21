@@ -29,7 +29,6 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 |-- style.css
 |-- script.js
 |-- favicon.svg
-|-- favicon.png
 |-- Ashrafi_Khan_Resume.pdf
 `-- README.md
 ```
