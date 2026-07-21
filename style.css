@@ -412,16 +412,6 @@
   .proj-card h3{ font-family: var(--ff-display); font-size: 1.05rem; margin-bottom: 10px; }
   .proj-card p{ color: var(--text-dim); font-size: 0.88rem; }
 
-  /* Reduce vertical gaps on smaller screens */
-  @media (max-width: 900px){
-    section{ padding: 70px 0; }
-    header.hero{ padding-top: 100px; padding-bottom: 60px; }
-  }
-  @media (max-width: 520px){
-    section{ padding: 48px 0; }
-    header.hero{ padding-top: 80px; padding-bottom: 48px; }
-  }
-
   /* Certifications */
   .cert-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; perspective: 800px; }
   @media (max-width: 700px){ .cert-list{ grid-template-columns: 1fr; } }
