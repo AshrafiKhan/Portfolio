@@ -66,25 +66,6 @@
     left: 160%;
   }
 
-  /* Ki energy field — Vegeta-inspired ambient animation, grayscale only */
-  .ki-field{ position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
-
-  .ki-spark{
-    position: absolute; bottom: -6%;
-    background: radial-gradient(circle, rgba(var(--ink-rgb),0.95), rgba(var(--ink-rgb),0.15) 60%, transparent 75%);
-    border-radius: 50%;
-    animation-name: ki-rise;
-    animation-timing-function: ease-in;
-    animation-iteration-count: infinite;
-  }
-  @keyframes ki-rise{
-    0%   { transform: translate(0,0) scale(0.6); opacity: 0; }
-    12%  { opacity: 0.9; }
-    45%  { opacity: 0.5; }
-    60%  { transform: translate(12px, -55vh) scale(1); opacity: 0.8; }
-    100% { transform: translate(-16px, -108vh) scale(0.4); opacity: 0; }
-  }
-
   /* Aura pulse behind hero card — Vegeta powering-up vibe */
   .stage::before{
     content: ''; position: absolute; inset: -8%; z-index: -1; border-radius: 50%;

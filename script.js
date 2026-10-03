@@ -1,25 +1,5 @@
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Ki energy field — Vegeta-inspired ambient sparks (kept light for low-end devices)
-  const kiField = document.getElementById('kiField');
-  if(kiField && !prefersReduced){
-    const sparkCount = window.innerWidth < 640 ? 6 : 12;
-    for(let i = 0; i < sparkCount; i++){
-      const spark = document.createElement('div');
-      spark.className = 'ki-spark';
-      const size = 4 + Math.random() * 6;
-      const left = Math.random() * 100;
-      const duration = 5 + Math.random() * 6;
-      const delay = Math.random() * -12;
-      spark.style.width = size + 'px';
-      spark.style.height = size + 'px';
-      spark.style.left = left + 'vw';
-      spark.style.animationDuration = duration + 's';
-      spark.style.animationDelay = delay + 's';
-      kiField.appendChild(spark);
-    }
-  }
-
   // Pause all CSS animations while the tab is hidden
   document.addEventListener('visibilitychange', () => {
     document.documentElement.classList.toggle('paused', document.hidden);
