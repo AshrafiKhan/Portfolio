@@ -103,7 +103,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   // 3D tilt on every card — subtle, mouse-tracked glass response
   if(!prefersReduced && window.matchMedia('(hover: hover)').matches){
     const tiltEls = document.querySelectorAll(
-      '.skill-card, .proj-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card'
+      '.skill-card, .svc-card, .proof-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card'
     );
     tiltEls.forEach(el => {
       el.style.transformStyle = 'preserve-3d';
