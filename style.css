@@ -445,12 +445,21 @@
   }
   .device:hover .device-label{ color: var(--text); }
 
+  /* Shown only on small screens, where the gallery becomes a swipeable strip */
+  .swipe-hint{
+    display:none; margin: 0; padding: 0 20px 16px; border-bottom: 1px solid var(--panel-border);
+    font-family: var(--ff-mono); font-size: 0.66rem; color: var(--text-faint); letter-spacing: 0.04em; text-align: center;
+  }
+
   /* Small screens: swipeable strip with equal-height frames */
   @media (max-width: 720px){
     .device-gallery{
       display:flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-      padding: 24px 20px 20px; scrollbar-width: thin;
+      padding: 24px 20px 20px; border-bottom: 0;
+      scrollbar-width: none; -ms-overflow-style: none;
     }
+    .device-gallery::-webkit-scrollbar{ display: none; }
+    .swipe-hint{ display:block; }
     .device-gallery > li{ flex: 0 0 auto; scroll-snap-align: start; }
     .device-screen img{ width: auto; height: 190px; }
     .device-desktop .device-screen img, .device-laptop .device-screen img{ height: 150px; }
