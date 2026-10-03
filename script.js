@@ -204,6 +204,50 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     });
   })();
 
+  // ---------- Screenshot lightbox for the responsive device galleries ----------
+  // Without JS (or <dialog> support) the device links simply open the full image.
+  (function initLightbox(){
+    const dlg = document.getElementById('lightbox');
+    if(!dlg || typeof dlg.showModal !== 'function') return;
+    const img = dlg.querySelector('img');
+    const cap = dlg.querySelector('figcaption');
+    let items = [], idx = 0, trigger = null;
+
+    function show(i){
+      idx = (i + items.length) % items.length;
+      const link = items[idx];
+      img.src = link.getAttribute('href');
+      img.alt = link.querySelector('img').alt;
+      cap.textContent = link.dataset.caption || '';
+    }
+
+    document.querySelectorAll('.device-gallery').forEach(gallery => {
+      const links = [...gallery.querySelectorAll('.device')];
+      links.forEach((link, i) => link.addEventListener('click', (e) => {
+        e.preventDefault();
+        items = links; trigger = link;
+        show(i);
+        dlg.showModal();
+      }));
+    });
+
+    dlg.querySelector('.lb-close').addEventListener('click', () => dlg.close());
+    dlg.querySelector('.lb-prev').addEventListener('click', () => show(idx - 1));
+    dlg.querySelector('.lb-next').addEventListener('click', () => show(idx + 1));
+    // Click on the dimmed area (outside the image and buttons) closes
+    dlg.addEventListener('click', (e) => {
+      if(e.target === dlg || e.target.classList.contains('lb-figure')) dlg.close();
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); show(idx - 1); }
+      else if(e.key === 'ArrowRight'){ e.preventDefault(); show(idx + 1); }
+    });
+    dlg.addEventListener('close', () => {
+      img.removeAttribute('src');
+      if(trigger) trigger.focus({ preventScroll: true });
+    });
+  })();
+
   // ---------- Kamehameha scroll wave — fires on in-page nav clicks ----------
   (function initKameScroll(){
     const wave = document.getElementById('kameWave');
