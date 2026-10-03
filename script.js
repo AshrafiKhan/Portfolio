@@ -1,25 +1,5 @@
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Ki energy field — Vegeta-inspired ambient sparks (kept light for low-end devices)
-  const kiField = document.getElementById('kiField');
-  if(kiField && !prefersReduced){
-    const sparkCount = window.innerWidth < 640 ? 6 : 12;
-    for(let i = 0; i < sparkCount; i++){
-      const spark = document.createElement('div');
-      spark.className = 'ki-spark';
-      const size = 4 + Math.random() * 6;
-      const left = Math.random() * 100;
-      const duration = 5 + Math.random() * 6;
-      const delay = Math.random() * -12;
-      spark.style.width = size + 'px';
-      spark.style.height = size + 'px';
-      spark.style.left = left + 'vw';
-      spark.style.animationDuration = duration + 's';
-      spark.style.animationDelay = delay + 's';
-      kiField.appendChild(spark);
-    }
-  }
-
   // Pause all CSS animations while the tab is hidden
   document.addEventListener('visibilitychange', () => {
     document.documentElement.classList.toggle('paused', document.hidden);
@@ -103,7 +83,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   // 3D tilt on every card — subtle, mouse-tracked glass response
   if(!prefersReduced && window.matchMedia('(hover: hover)').matches){
     const tiltEls = document.querySelectorAll(
-      '.skill-card, .proj-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card'
+      '.skill-card, .svc-card, .proof-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card'
     );
     tiltEls.forEach(el => {
       el.style.transformStyle = 'preserve-3d';
@@ -201,6 +181,123 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
       setTimeout(toggleAndSave, 150);
       setTimeout(() => { flash.style.opacity = '0'; }, 180);
       setTimeout(() => { flash.remove(); }, 400);
+    });
+  })();
+
+  // ---------- Device switcher — small screens show one device at a time ----------
+  // Builds a Desktop / Laptop / Tablet / Mobile tab bar for each gallery. CSS only shows it
+  // at narrow widths; wider screens keep the full side-by-side lineup.
+  (function initDeviceSwitch(){
+    const svg = (body) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+    const ICONS = {
+      desktop: svg('<rect x="2.5" y="3.5" width="19" height="13" rx="1.5"/><path d="M8 20.5h8M12 16.5v4"/>'),
+      laptop: svg('<rect x="4.5" y="4.5" width="15" height="10.5" rx="1.2"/><path d="M2 18.5h20"/>'),
+      tablet: svg('<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M11 18.5h2"/>'),
+      mobile: svg('<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/>'),
+    };
+    const KINDS = ['desktop', 'laptop', 'tablet', 'mobile'];
+
+    document.querySelectorAll('.device-gallery').forEach((gallery, gi) => {
+      const items = [...gallery.children];
+      if(!items.length) return;
+
+      const showcase = document.createElement('div');
+      showcase.className = 'device-showcase';
+      const bar = document.createElement('div');
+      bar.className = 'device-switch';
+      bar.setAttribute('role', 'tablist');
+      bar.setAttribute('aria-label', 'Screen size');
+
+      let current = 0;
+      const tabs = items.map((li, i) => {
+        const link = li.querySelector('.device');
+        const kind = KINDS.find(k => link.classList.contains('device-' + k)) || 'desktop';
+        li.id = `device-${gi}-${i}`;
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-controls', li.id);
+        tab.innerHTML = ICONS[kind] + `<span>${kind.charAt(0).toUpperCase() + kind.slice(1)}</span>`;
+        tab.addEventListener('click', () => select(i));
+        bar.appendChild(tab);
+        return tab;
+      });
+
+      function select(i, focusTab){
+        current = (i + items.length) % items.length;
+        items.forEach((li, j) => li.classList.toggle('is-active', j === current));
+        tabs.forEach((tab, j) => {
+          tab.setAttribute('aria-selected', j === current ? 'true' : 'false');
+          tab.tabIndex = j === current ? 0 : -1;
+        });
+        if(focusTab) tabs[current].focus();
+      }
+
+      bar.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowRight'){ e.preventDefault(); select(current + 1, true); }
+        else if(e.key === 'ArrowLeft'){ e.preventDefault(); select(current - 1, true); }
+      });
+
+      // Horizontal swipe on the preview switches device
+      let startX = null, startY = null;
+      gallery.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+      }, { passive: true });
+      gallery.addEventListener('touchend', (e) => {
+        if(startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        startX = startY = null;
+        if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) select(current + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      gallery.before(showcase);
+      showcase.append(bar, gallery);
+      select(0);
+    });
+  })();
+
+  // ---------- Screenshot lightbox for the responsive device galleries ----------
+  // Without JS (or <dialog> support) the device links simply open the full image.
+  (function initLightbox(){
+    const dlg = document.getElementById('lightbox');
+    if(!dlg || typeof dlg.showModal !== 'function') return;
+    const img = dlg.querySelector('img');
+    const cap = dlg.querySelector('figcaption');
+    let items = [], idx = 0, trigger = null;
+
+    function show(i){
+      idx = (i + items.length) % items.length;
+      const link = items[idx];
+      img.src = link.getAttribute('href');
+      img.alt = link.querySelector('img').alt;
+      cap.textContent = link.dataset.caption || '';
+    }
+
+    document.querySelectorAll('.device-gallery').forEach(gallery => {
+      const links = [...gallery.querySelectorAll('.device')];
+      links.forEach((link, i) => link.addEventListener('click', (e) => {
+        e.preventDefault();
+        items = links; trigger = link;
+        show(i);
+        dlg.showModal();
+      }));
+    });
+
+    dlg.querySelector('.lb-close').addEventListener('click', () => dlg.close());
+    dlg.querySelector('.lb-prev').addEventListener('click', () => show(idx - 1));
+    dlg.querySelector('.lb-next').addEventListener('click', () => show(idx + 1));
+    // Click on the dimmed area (outside the image and buttons) closes
+    dlg.addEventListener('click', (e) => {
+      if(e.target === dlg || e.target.classList.contains('lb-figure')) dlg.close();
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); show(idx - 1); }
+      else if(e.key === 'ArrowRight'){ e.preventDefault(); show(idx + 1); }
+    });
+    dlg.addEventListener('close', () => {
+      img.removeAttribute('src');
+      if(trigger) trigger.focus({ preventScroll: true });
     });
   })();
 
