@@ -1,80 +1,127 @@
-:root{
-    --ink-rgb: 255,255,255;
-    --bg: #0a0a0b;
-    --bg-2: #141416;
-    --panel: rgba(var(--ink-rgb),0.045);
-    --panel-border: rgba(var(--ink-rgb),0.10);
-    --panel-border-hi: rgba(var(--ink-rgb),0.32);
-    --text: #ffffff;
-    --text-dim: #c8c8cf;
-    --text-faint: #9a9aa2;
-    --accent: #e8e8ec;
-    --accent-2: #b8b8c0;
-    --accent-glow: rgba(var(--ink-rgb),0.22);
-    --amber-glow: rgba(var(--ink-rgb),0.12);
-    --grad-mid: #ffffff;
-    --nav-bg: rgba(10,10,11,0.6);
-    --nav-bg-mobile: rgba(10,10,11,0.94);
-    --card-shadow:
-      0 0 0 1px rgba(var(--ink-rgb), 0.08),
-      0 12px 30px rgba(0, 0, 0, 0.45),
-      0 2px 8px rgba(var(--ink-rgb), 0.08),
-      inset 0 1px 0 rgba(var(--ink-rgb), 0.12),
-      inset 0 -1px 0 rgba(var(--ink-rgb), 0.03);
-    --card-shadow-hover:
-      0 0 0 1px rgba(var(--ink-rgb), 0.14),
-      0 20px 46px rgba(0, 0, 0, 0.55),
-      0 3px 10px rgba(var(--ink-rgb), 0.1),
-      inset 0 1px 0 rgba(var(--ink-rgb), 0.16),
-      inset 0 -1px 0 rgba(var(--ink-rgb), 0.04);
-    --radius: 18px;
+/* ---------- Dark theme (default) — "Graphite night" ----------
+     Charcoal drafting desk, a quiet blue construction grid, hairline cards with a
+     blue offset shadow. Shares its structure with the light "Blueprint paper" theme. */
+  :root{
+    --ink-rgb: 236,238,242;
+    --bp-rgb: 107,140,255;
+    --bg: #111316;
+    --bg-2: #16181c;
+    --paper: #181a1f;
+    --panel: var(--paper);
+    --panel-border: rgba(236,238,242,0.10);
+    --panel-border-hi: rgba(236,238,242,0.45);
+    --line-strong: rgba(236,238,242,0.32);
+    --btn-border: rgba(236,238,242,0.22);
+    --text: #eceef2;
+    --text-dim: #b3b7c0;
+    --text-faint: #8b909a;
+    --accent: #8aa4ff;
+    --accent-2: #a3b1d9;
+    --accent-fill: #4766e8;
+    --on-accent: #ffffff;
+    --accent-glow: rgba(107,140,255,0.22);
+    --nav-bg: rgba(17,19,22,0.86);
+    --nav-bg-mobile: rgba(17,19,22,0.97);
+    --card-shadow: 3px 3px 0 rgba(107,140,255,0.14);
+    --card-shadow-hover: 6px 6px 0 rgba(107,140,255,0.30);
+    --sheet-shadow: 10px 10px 0 rgba(107,140,255,0.18);
+    --selection: rgba(107,140,255,0.35);
+    --grid-major: 0.07;
+    --grid-minor: 0.03;
+    --noise-opacity: 0.03;
+    --noise-blend: overlay;
+    --dot-3: #4a4e57;
+    --radius: 10px;
     --ff-display: 'Space Grotesk', sans-serif;
     --ff-body: 'Inter', sans-serif;
     --ff-mono: 'JetBrains Mono', monospace;
   }
 
+  /* ---------- Light theme — "Blueprint paper" ----------
+     Warm drafting paper, a blue construction grid, ink hairlines and a blue
+     offset shadow on cards (like slightly misregistered print). */
   html.light-mode{
-    --ink-rgb: 10,10,11;
-    --bg: #f2f2f4;
-    --bg-2: #e3e3e7;
-    --text: #0a0a0b;
-    --text-dim: #45454e;
-    --text-faint: #6c6c75;
-    --accent: #1a1a1d;
-    --accent-2: #46464e;
-    --grad-mid: #0a0a0b;
-    --nav-bg: rgba(242,242,244,0.7);
-    --nav-bg-mobile: rgba(242,242,244,0.94);
+    --ink-rgb: 20,22,26;
+    --bp-rgb: 31,79,216;
+    --bg: #f4f1ea;
+    --bg-2: #ece7dc;
+    --paper: #fffdf8;
+    --panel-border: rgba(20,22,26,0.18);
+    --panel-border-hi: #14161a;
+    --line-strong: #14161a;
+    --btn-border: rgba(20,22,26,0.35);
+    --text: #14161a;
+    --text-dim: #43464e;
+    --text-faint: #62656d;
+    --accent: #1f4fd8;
+    --accent-2: #3a5597;
+    --accent-fill: #1f4fd8;
+    --on-accent: #ffffff;
+    --accent-glow: rgba(31,79,216,0.18);
+    --nav-bg: rgba(244,241,234,0.86);
+    --nav-bg-mobile: rgba(244,241,234,0.97);
+    --card-shadow: 3px 3px 0 rgba(31,79,216,0.12);
+    --card-shadow-hover: 6px 6px 0 rgba(31,79,216,0.24);
+    --sheet-shadow: 10px 10px 0 rgba(31,79,216,0.16);
+    --selection: rgba(31,79,216,0.2);
+    --grid-major: 0.13;
+    --grid-minor: 0.055;
+    --noise-opacity: 0.05;
+    --noise-blend: multiply;
+    --dot-3: #b9bcc4;
   }
-  html.light-mode .btn.primary{
-    background: linear-gradient(135deg, #0a0a0b, #46464e); color: #ffffff;
-  }
-  html.light-mode ::selection{ color: #f2f2f4; }
 
-  /* Glass shine sweep — reinforces the 3D glass feel on hover */
+  /* ---------- Shared blueprint system (both themes) ----------
+     Rules are prefixed with `html` so they win over the component defaults below. */
+  html ::selection{ background: var(--selection); color: var(--text); }
+
+  /* Solid cards — no frosted-glass blur */
+  html .skill-card, html .svc-card, html .feat-card, html .tl-card, html .stat-card,
+  html .cert-item, html .edu-card, html .lang-card, html .proof-card, html .float-chip, html nav{
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
   .skill-card, .svc-card, .feat-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card, .proof-card{
-    position: relative; overflow: hidden;
-  }
-  .skill-card::after, .svc-card::after, .feat-card::after, .tl-card::after, .stat-card::after,
-  .cert-item::after, .edu-card::after, .lang-card::after, .proof-card::after{
-    content:''; position:absolute; top:0; left:-160%; width:55%; height:100%;
-    background: linear-gradient(100deg, transparent, rgba(var(--ink-rgb),0.14), transparent);
-    transform: skewX(-20deg); transition: left .7s ease; pointer-events:none;
-  }
-  .skill-card:hover::after, .svc-card:hover::after, .feat-card:hover::after, .tl-card:hover::after, .stat-card:hover::after,
-  .cert-item:hover::after, .edu-card:hover::after, .lang-card:hover::after, .proof-card:hover::after{
-    left: 160%;
+    position: relative;
   }
 
-  /* Aura pulse behind hero card — Vegeta powering-up vibe */
-  .stage::before{
-    content: ''; position: absolute; inset: -8%; z-index: -1; border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--ink-rgb),0.16), transparent 70%);
-    animation: aura-pulse 3.2s ease-in-out infinite;
+  /* Buttons: card-colored with a hairline; primary is blueprint blue with a hard shadow */
+  html .btn{ background: var(--paper); border-color: var(--btn-border); backdrop-filter: none; border-radius: 6px; }
+  html .btn:not(.primary):hover{
+    background: var(--paper); border-color: var(--text); box-shadow: 3px 3px 0 rgba(var(--bp-rgb),0.3);
   }
-  @keyframes aura-pulse{
-    0%, 100% { transform: scale(0.92); opacity: 0.55; }
-    50%      { transform: scale(1.08); opacity: 1; }
+  html .btn.primary{
+    background: var(--accent-fill); border-color: var(--text); color: var(--on-accent);
+    box-shadow: 3px 3px 0 var(--text);
+  }
+  html .btn.primary:hover{ transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--text); }
+
+  html .chip{ background: rgba(var(--bp-rgb),0.07); border-color: rgba(var(--bp-rgb),0.24); }
+  html .chip:hover{ background: rgba(var(--bp-rgb),0.13); border-color: rgba(var(--bp-rgb),0.48); }
+
+  /* Hero code card drawn as a technical sheet */
+  html .glass-card{
+    background: var(--paper); border-color: var(--line-strong);
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: var(--sheet-shadow);
+  }
+  html .glass-card .bar{ background: rgba(var(--bp-rgb),0.05); border-bottom-color: var(--panel-border); }
+  html .glass-card .dot:nth-child(1){ background: var(--text); }
+  html .glass-card .dot:nth-child(2){ background: var(--accent); }
+  html .glass-card .dot:nth-child(3){ background: var(--dot-3); }
+  html .float-chip{
+    background: var(--paper); border-color: var(--line-strong); box-shadow: 3px 3px 0 rgba(var(--bp-rgb),0.25);
+  }
+  html .contact-card{
+    background: var(--paper); border-color: var(--line-strong); border-radius: 12px;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: var(--sheet-shadow);
+  }
+
+  /* Drafting-style annotations */
+  .sec-eyebrow::before{ content: '// '; opacity: 0.7; }
+  html .kame-wave{
+    background: linear-gradient(180deg, transparent, rgba(var(--bp-rgb),0.9), rgba(var(--bp-rgb),0.4), transparent);
+    box-shadow: 0 0 24px 6px rgba(var(--bp-rgb),0.35);
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -82,15 +129,13 @@
   html{ scroll-behavior: smooth; }
 
   body{
-    background: radial-gradient(ellipse 120% 80% at 50% -10%, var(--bg-2) 0%, var(--bg) 55%), var(--bg);
+    background: var(--bg);
     color: var(--text);
     font-family: var(--ff-body);
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
   }
-
-  ::selection{ background: var(--accent-glow); color: #fff; }
 
   a{ color: inherit; text-decoration: none; }
 
@@ -103,27 +148,20 @@
   }
 
   .noise{
-    position: fixed; inset:0; pointer-events:none; z-index: 1; opacity: 0.035; mix-blend-mode: overlay;
+    position: fixed; inset:0; pointer-events:none; z-index: 1; opacity: var(--noise-opacity); mix-blend-mode: var(--noise-blend);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  /* Full-page construction grid: minor 24px lines, major 120px lines */
   .grid-glow{
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background-image:
-      linear-gradient(rgba(var(--ink-rgb),0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--ink-rgb),0.06) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 0%, transparent 70%);
+      linear-gradient(rgba(var(--bp-rgb),var(--grid-major)) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--bp-rgb),var(--grid-major)) 1px, transparent 1px),
+      linear-gradient(rgba(var(--bp-rgb),var(--grid-minor)) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--bp-rgb),var(--grid-minor)) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   }
-
-  .orb{
-    position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0;
-    background: radial-gradient(circle, rgba(var(--ink-rgb),0.10), transparent 70%);
-  }
-  .orb-1{ width: 480px; height: 480px; top: -140px; left: -120px; animation: drift1 22s ease-in-out infinite; }
-  .orb-2{ width: 420px; height: 420px; bottom: -160px; right: -100px; animation: drift2 26s ease-in-out infinite; }
-  @keyframes drift1{ 0%,100%{ transform: translate(0,0); } 50%{ transform: translate(60px, 40px); } }
-  @keyframes drift2{ 0%,100%{ transform: translate(0,0); } 50%{ transform: translate(-50px, -30px); } }
 
   .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 64px); position: relative; z-index: 2; }
 
@@ -208,13 +246,7 @@
     font-family: var(--ff-display); font-weight: 600; font-size: clamp(1.15rem, 2vw, 1.45rem);
     line-height: 1.3; color: var(--text); max-width: 30ch; margin-bottom: 16px; text-wrap: balance;
   }
-  h1.name .grad{
-    background: linear-gradient(100deg, var(--accent) 10%, var(--grad-mid) 45%, var(--accent-2) 90%);
-    background-size: 220% auto;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: shimmer 7s ease-in-out infinite;
-  }
-  @keyframes shimmer{ 0%,100%{ background-position: 0% 50%; } 50%{ background-position: 100% 50%; } }
+  h1.name .grad{ color: var(--accent); }
 
   .summary{ color: var(--text-dim); max-width: 56ch; font-size: 1rem; margin-bottom: 30px; }
 
@@ -275,9 +307,8 @@
     background: var(--panel); border: 1px solid var(--panel-border); backdrop-filter: blur(12px);
     box-shadow: 0 14px 30px -10px rgba(0,0,0,0.5); transform: translateZ(40px);
   }
-  .float-chip.c1{ top: -18px; right: -14px; color: var(--accent-2); animation: floaty 5s ease-in-out infinite; }
-  .float-chip.c2{ bottom: -16px; left: -18px; color: var(--accent); animation: floaty 6s ease-in-out infinite 0.5s; }
-  @keyframes floaty{ 0%,100%{ transform: translateZ(40px) translateY(0); } 50%{ transform: translateZ(40px) translateY(-10px); } }
+  .float-chip.c1{ top: -18px; right: -14px; color: var(--accent-2); }
+  .float-chip.c2{ bottom: -16px; left: -18px; color: var(--accent); }
 
   @media (max-width: 860px){ .glass-card{ transform: none; } .stage{ perspective:none; } }
   @media (max-width: 520px){
@@ -355,8 +386,7 @@
   .timeline::before{ content:''; position:absolute; left: 6px; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(var(--accent), transparent); }
   .tl-item{ position: relative; margin-bottom: 40px; }
   .tl-item:last-child{ margin-bottom: 0; }
-  .tl-dot{ position:absolute; left: -32px; top: 6px; width: 13px; height: 13px; border-radius:50%; background: var(--bg); border: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(var(--ink-rgb),0.1); animation: pulse-dot 2.6s ease-in-out infinite; }
-  @keyframes pulse-dot{ 0%,100%{ box-shadow: 0 0 0 4px rgba(var(--ink-rgb),0.1); } 50%{ box-shadow: 0 0 0 8px rgba(var(--ink-rgb),0.04); } }
+  .tl-dot{ position:absolute; left: -32px; top: 6px; width: 13px; height: 13px; border-radius:50%; background: var(--bg); border: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(var(--bp-rgb),0.14); }
   .tl-card{
     background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius);
     padding: 24px 26px; backdrop-filter: blur(14px);
@@ -647,7 +677,6 @@
     .skill-card, .svc-card, .feat-card, .proof-card, .tl-card, .stat-card, .cert-item, .edu-card, .lang-card, .btn, .float-chip{
       backdrop-filter: none; -webkit-backdrop-filter: none;
     }
-    .orb{ animation: none; }
   }
 
   @media (max-width: 640px){
