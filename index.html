@@ -9,6 +9,7 @@
       content="Ashrafi Khan Pathan is a WordPress Developer in Gujarat, India specializing in Figma-to-WordPress builds, Elementor Pro, ACF, WooCommerce, SEO-friendly structure, and performance-focused websites."
     />
     <meta name="author" content="Ashrafi Khan Pathan" />
+    <link rel="canonical" href="https://ashrafikhan.github.io/Portfolio/" />
     <meta
       property="og:title"
       content="Ashrafi Khan Pathan — WordPress Developer"
@@ -18,7 +19,18 @@
       content="WordPress Developer specializing in fast, responsive, SEO-friendly Figma-to-WordPress websites with Elementor Pro, ACF, and WooCommerce."
     />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="https://ashrafikhan.github.io/Portfolio/" />
+    <meta
+      property="og:image"
+      content="https://ashrafikhan.github.io/Portfolio/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ashrafi Khan Pathan — WordPress Developer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
       content="Ashrafi Khan Pathan — WordPress Developer"
@@ -27,18 +39,69 @@
       name="twitter:description"
       content="WordPress Developer specializing in fast, responsive, SEO-friendly Figma-to-WordPress websites."
     />
+    <meta
+      name="twitter:image"
+      content="https://ashrafikhan.github.io/Portfolio/og-image.png"
+    />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ashrafi Khan Pathan",
+        "jobTitle": "WordPress Developer",
+        "url": "https://ashrafikhan.github.io/Portfolio/",
+        "email": "mailto:pathanashrafi2709@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Gujarat",
+          "addressCountry": "IN"
+        },
+        "worksFor": { "@type": "Organization", "name": "MadeByAura" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "BVM Engineering College"
+        },
+        "knowsAbout": [
+          "WordPress",
+          "Elementor Pro",
+          "Advanced Custom Fields",
+          "WooCommerce",
+          "PHP",
+          "SEO",
+          "Web Performance"
+        ],
+        "sameAs": [
+          "https://github.com/AshrafiKhan",
+          "https://www.linkedin.com/in/ashrafi-khan-pathan-2824891b2"
+        ]
+      }
+    </script>
     <script>
-      try {
-        if (localStorage.getItem("theme") === "light") {
-          document.documentElement.classList.add("light-mode");
-        }
-      } catch (e) {}
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        try {
+          var saved = localStorage.getItem("theme");
+          if (
+            saved === "light" ||
+            (!saved &&
+              window.matchMedia("(prefers-color-scheme: light)").matches)
+          ) {
+            root.classList.add("light-mode");
+          }
+        } catch (e) {}
+        try {
+          if (sessionStorage.getItem("introSeen") === "1") {
+            root.classList.add("no-intro");
+          }
+        } catch (e) {}
+      })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -126,7 +189,7 @@
               <div class="bar">
                 <span class="dot"></span><span class="dot"></span
                 ><span class="dot"></span>
-                <span class="url">ashrafi-pathan.dev</span>
+                <span class="url">ashrafikhan.github.io</span>
               </div>
               <div class="code">
                 <div><span class="ln">01</span><span class="kw">const</span> dev = {</div>
@@ -167,19 +230,19 @@
           </div>
           <div class="stat-grid">
             <div class="stat-card">
-              <div class="stat-num" data-target="2.5" data-suffix="+">0</div>
+              <div class="stat-num" data-target="2.5" data-suffix="+">2.5+</div>
               <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num" data-target="10" data-suffix="+">0</div>
+              <div class="stat-num" data-target="10" data-suffix="+">10+</div>
               <div class="stat-label">Sites Built</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num" data-target="15" data-suffix="+">0</div>
+              <div class="stat-num" data-target="15" data-suffix="+">15+</div>
               <div class="stat-label">Sites Maintained</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num" data-target="40" data-suffix="%">0</div>
+              <div class="stat-num" data-target="40" data-suffix="%">40%</div>
               <div class="stat-label">Avg. Speed Gain</div>
             </div>
           </div>
@@ -375,6 +438,10 @@
         </div>
         <div class="cert-list reveal">
           <div class="cert-item">
+            <span class="cname">UI/UX Basic — AT&amp;T E-Learning</span
+            ><span class="cdate">Feb 2024</span>
+          </div>
+          <div class="cert-item">
             <span class="cname"
               >Build Responsive Real World Portfolio WordPress Website —
               Udemy</span
@@ -382,13 +449,8 @@
           </div>
           <div class="cert-item">
             <span class="cname"
-              >WordPress Crash Course: Build any Website in Minutes —
+              >Web Development Wizardry: HTML &amp; CSS for Beginners —
               Udemy</span
-            ><span class="cdate">Sep 2023</span>
-          </div>
-          <div class="cert-item">
-            <span class="cname"
-              >Web Development Wizardry: HTML & CSS for Beginners — Udemy</span
             ><span class="cdate">Jan 2024</span>
           </div>
           <div class="cert-item">
@@ -400,8 +462,10 @@
             ><span class="cdate">Jan 2024</span>
           </div>
           <div class="cert-item">
-            <span class="cname">UI/UX Basic — AT&T E-Learning</span
-            ><span class="cdate">Feb 2024</span>
+            <span class="cname"
+              >WordPress Crash Course: Build any Website in Minutes —
+              Udemy</span
+            ><span class="cdate">Sep 2023</span>
           </div>
         </div>
       </section>
@@ -438,7 +502,6 @@
               >Email Me</a
             >
             <a class="btn" href="Ashrafi_Khan_Resume.pdf" download>Download Resume</a>
-            <a class="btn" href="tel:+917698295291">+91 76982 95291</a>
             <a
               class="btn"
               href="https://github.com/AshrafiKhan"
@@ -448,7 +511,7 @@
             >
             <a
               class="btn"
-              href="https://linkedin.com/in/ashrafi-khan-pathan-2824891b2"
+              href="https://www.linkedin.com/in/ashrafi-khan-pathan-2824891b2"
               target="_blank"
               rel="noopener noreferrer"
               >LinkedIn</a
