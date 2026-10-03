@@ -301,6 +301,17 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     });
   })();
 
+  // ---------- Back-to-top button — shown once the hero is out of view ----------
+  // The click itself is handled by the Kamehameha scroll below, like any other #link.
+  (function initToTop(){
+    const btn = document.getElementById('toTop');
+    const hero = document.getElementById('top');
+    if(!btn || !hero) return;
+    new IntersectionObserver(([entry]) => {
+      btn.classList.toggle('show', !entry.isIntersecting);
+    }).observe(hero);
+  })();
+
   // ---------- Kamehameha scroll wave — fires on in-page nav clicks ----------
   (function initKameScroll(){
     const wave = document.getElementById('kameWave');
