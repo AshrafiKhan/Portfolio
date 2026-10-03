@@ -11,7 +11,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 - Scroll reveal animations and animated statistics
 - Resume download links
 - SEO metadata and favicon support
-- Contact links for email, phone, GitHub, and LinkedIn
+- Contact links for email, GitHub, and LinkedIn
 
 ## Tech Stack
 
@@ -29,6 +29,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 |-- style.css
 |-- script.js
 |-- favicon.svg
+|-- og-image.png
 |-- Ashrafi_Khan_Resume.pdf
 `-- README.md
 ```
@@ -54,4 +55,5 @@ Before deploying, make sure the resume links in `index.html` match the resume PD
 
 - Email: `pathanashrafi2709@gmail.com`
 - GitHub: [AshrafiKhan](https://github.com/AshrafiKhan)
-- LinkedIn: [ashrafi-khan-pathan-2824891b2](https://linkedin.com/in/ashrafi-khan-pathan-2824891b2)
+- LinkedIn: [ashrafi-khan-pathan-2824891b2](https://www.linkedin.com/in/ashrafi-khan-pathan-2824891b2)
+- Live site: [ashrafikhan.github.io/Portfolio](https://ashrafikhan.github.io/Portfolio/)

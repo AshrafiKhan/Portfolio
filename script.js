@@ -1,9 +1,9 @@
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Ki energy field — Vegeta-inspired continuous ambient animation
+  // Ki energy field — Vegeta-inspired ambient sparks (kept light for low-end devices)
   const kiField = document.getElementById('kiField');
   if(kiField && !prefersReduced){
-    const sparkCount = window.innerWidth < 640 ? 10 : 18;
+    const sparkCount = window.innerWidth < 640 ? 6 : 12;
     for(let i = 0; i < sparkCount; i++){
       const spark = document.createElement('div');
       spark.className = 'ki-spark';
@@ -18,78 +18,68 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
       spark.style.animationDelay = delay + 's';
       kiField.appendChild(spark);
     }
-
-    const beamCount = window.innerWidth < 640 ? 2 : 4;
-    for(let i = 0; i < beamCount; i++){
-      const beam = document.createElement('div');
-      beam.className = 'ki-beam';
-      const top = 10 + Math.random() * 80;
-      const duration = 6 + Math.random() * 5;
-      const delay = Math.random() * -10;
-      const angle = -22 + Math.random() * 16;
-      beam.style.top = top + 'vh';
-      beam.style.animationDuration = duration + 's';
-      beam.style.animationDelay = delay + 's';
-      beam.style.setProperty('--rot', angle + 'deg');
-      kiField.appendChild(beam);
-    }
   }
+
+  // Pause all CSS animations while the tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    document.documentElement.classList.toggle('paused', document.hidden);
+  });
 
   // Mobile nav toggle
   const navToggle = document.getElementById('navToggle');
   const navlinks = document.getElementById('navlinks');
   if(navToggle && navlinks){
-    navToggle.addEventListener('click', () => {
-      const isOpen = navlinks.classList.toggle('open');
+    function setNavOpen(isOpen){
+      navlinks.classList.toggle('open', isOpen);
       navToggle.classList.toggle('open', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    navToggle.addEventListener('click', () => {
+      setNavOpen(!navlinks.classList.contains('open'));
     });
-    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      navlinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }));
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && navlinks.classList.contains('open')){
+        setNavOpen(false);
+        navToggle.focus();
+      }
+    });
   }
 
-  // Count-up animated stats — replays every time it re-enters view
+  // Count-up animated stats — runs once when first in view; the HTML already holds the final values
   const statNums = document.querySelectorAll('.stat-num');
-  const countIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const el = entry.target;
-      if(!entry.isIntersecting){
-        el.dataset.running = '0';
-        return;
-      }
-      if(el.dataset.running === '1') return;
-      el.dataset.running = '1';
-      const target = parseFloat(el.dataset.target);
-      const suffix = el.dataset.suffix || '';
-      const isDecimal = el.dataset.target.includes('.');
-      if(prefersReduced){
-        el.textContent = target + suffix;
-        return;
-      }
-      const duration = 1400;
-      const start = performance.now();
-      function tick(now){
-        if(el.dataset.running !== '1') return;
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = target * eased;
-        el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
-        if(progress < 1) requestAnimationFrame(tick);
-      }
-      el.textContent = (isDecimal ? '0.0' : '0') + suffix;
-      requestAnimationFrame(tick);
-    });
-  }, { threshold: 0.4 });
-  statNums.forEach(el => countIo.observe(el));
+  if(!prefersReduced){
+    const countIo = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const isDecimal = el.dataset.target.includes('.');
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now){
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = target * eased;
+          el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+          if(progress < 1) requestAnimationFrame(tick);
+        }
+        el.textContent = (isDecimal ? '0.0' : '0') + suffix;
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    statNums.forEach(el => countIo.observe(el));
+  }
 
-  // Scroll reveal — replays every time an element re-enters the viewport
+  // Scroll reveal — each element animates in once
   const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver((entries, observer) => {
     entries.forEach(e => {
-      e.target.classList.toggle('in', e.isIntersecting);
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
@@ -128,27 +118,30 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     });
   }
 
-  // ---------- Loading screen — Scouter power-level entrance ----------
+  // ---------- Loading screen — Scouter power-level entrance (first visit per session only) ----------
   (function initLoadScreen(){
     const screen = document.getElementById('loadScreen');
     const numEl = document.getElementById('loadPowerNum');
     const barFill = document.getElementById('loadBarFill');
     if(!screen) return;
 
-    if(prefersReduced){
+    try{ sessionStorage.setItem('introSeen', '1'); }catch(e){}
+
+    function hideScreen(){
       screen.classList.add('hide');
       setTimeout(() => screen.remove(), 550);
+    }
+
+    if(prefersReduced || document.documentElement.classList.contains('no-intro')){
+      screen.remove();
       return;
     }
 
     const target = 8000 + Math.floor(Math.random() * 900);
-    const duration = 1300;
+    const duration = 900;
     const start = performance.now();
 
-    const safetyTimeout = setTimeout(() => {
-      screen.classList.add('hide');
-      setTimeout(() => screen.remove(), 550);
-    }, 3000);
+    const safetyTimeout = setTimeout(hideScreen, 2500);
 
     function tick(now){
       const t = Math.min((now - start) / duration, 1);
@@ -162,10 +155,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
         numEl.textContent = "IT'S OVER INFINITY!";
         numEl.parentElement.classList.add('over');
         clearTimeout(safetyTimeout);
-        setTimeout(() => {
-          screen.classList.add('hide');
-          setTimeout(() => screen.remove(), 550);
-        }, 500);
+        setTimeout(hideScreen, 400);
       }
     }
     requestAnimationFrame(tick);
@@ -175,26 +165,40 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   (function initThemeToggle(){
     const btn = document.getElementById('themeToggle');
     if(!btn) return;
+    const root = document.documentElement;
     function syncThemeState(){
-      btn.setAttribute('aria-pressed', document.documentElement.classList.contains('light-mode') ? 'true' : 'false');
+      btn.setAttribute('aria-pressed', root.classList.contains('light-mode') ? 'true' : 'false');
+    }
+    function hasSavedTheme(){
+      try{ return !!localStorage.getItem('theme'); }catch(e){ return false; }
+    }
+    function toggleAndSave(){
+      root.classList.toggle('light-mode');
+      try{ localStorage.setItem('theme', root.classList.contains('light-mode') ? 'light' : 'dark'); }catch(e){}
+      syncThemeState();
     }
     syncThemeState();
+
+    // Follow the OS theme until the visitor picks one explicitly
+    const lightQuery = window.matchMedia('(prefers-color-scheme: light)');
+    const onSystemChange = (e) => {
+      if(hasSavedTheme()) return;
+      root.classList.toggle('light-mode', e.matches);
+      syncThemeState();
+    };
+    if(lightQuery.addEventListener) lightQuery.addEventListener('change', onSystemChange);
+    else if(lightQuery.addListener) lightQuery.addListener(onSystemChange);
+
     btn.addEventListener('click', () => {
       if(prefersReduced){
-        document.documentElement.classList.toggle('light-mode');
-        try{ localStorage.setItem('theme', document.documentElement.classList.contains('light-mode') ? 'light' : 'dark'); }catch(e){}
-        syncThemeState();
+        toggleAndSave();
         return;
       }
       const flash = document.createElement('div');
       flash.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:99998;pointer-events:none;opacity:0;transition:opacity .15s ease;';
       document.body.appendChild(flash);
       requestAnimationFrame(() => { flash.style.opacity = '1'; });
-      setTimeout(() => {
-        document.documentElement.classList.toggle('light-mode');
-        try{ localStorage.setItem('theme', document.documentElement.classList.contains('light-mode') ? 'light' : 'dark'); }catch(e){}
-        syncThemeState();
-      }, 150);
+      setTimeout(toggleAndSave, 150);
       setTimeout(() => { flash.style.opacity = '0'; }, 180);
       setTimeout(() => { flash.remove(); }, 400);
     });
@@ -206,6 +210,12 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     const navEl = document.querySelector('nav');
     if(!wave) return;
 
+    // Move keyboard / screen-reader focus to the section that was scrolled to
+    function focusTarget(targetEl){
+      if(!targetEl.hasAttribute('tabindex')) targetEl.setAttribute('tabindex', '-1');
+      targetEl.focus({ preventScroll: true });
+    }
+
     function smoothScrollWithWave(targetEl){
       const offset = (navEl ? navEl.offsetHeight : 64) + 12;
       const startY = window.scrollY;
@@ -213,7 +223,8 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
       const distance = targetY - startY;
 
       if(prefersReduced){
-        window.scrollTo({ top: targetY, behavior: 'auto' });
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+        focusTarget(targetEl);
         return;
       }
 
@@ -224,7 +235,8 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
       function tick(now){
         const t = Math.min((now - start) / duration, 1);
         const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        window.scrollTo({ top: startY + distance * eased, left: 0, behavior: 'auto' });
+        // 'instant' — 'auto' would defer to the CSS scroll-behavior: smooth and fight this animation
+        window.scrollTo({ top: startY + distance * eased, left: 0, behavior: 'instant' });
         const travel = (navEl ? navEl.offsetHeight : 64) + (window.innerHeight - (navEl ? navEl.offsetHeight : 64)) * t;
         wave.style.top = travel + 'px';
         wave.style.opacity = t < 0.08 ? (t / 0.08) : (t > 0.85 ? (1 - t) / 0.15 : 1);
@@ -232,6 +244,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
           requestAnimationFrame(tick);
         }else{
           wave.classList.remove('active');
+          focusTarget(targetEl);
         }
       }
       requestAnimationFrame(tick);
@@ -244,6 +257,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
         const target = document.querySelector(id);
         if(!target) return;
         e.preventDefault();
+        if(location.hash !== id) history.pushState(null, '', id);
         smoothScrollWithWave(target);
       });
     });
