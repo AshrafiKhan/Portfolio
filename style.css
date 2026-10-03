@@ -226,7 +226,7 @@
   /* ---------- HERO ---------- */
   header.hero{
     display:flex; align-items:center; position: relative;
-    padding-top: 150px; padding-bottom: 90px;
+    padding-top: 150px; padding-bottom: 56px;
   }
   .hero-inner{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items:center; }
   .hero-inner > *{ min-width: 0; }
@@ -318,7 +318,8 @@
   }
 
   /* ---------- SECTIONS ---------- */
-  section{ padding: 110px 0; position: relative; }
+  /* Fluid padding — adjacent sections stack top + bottom, so the visible gap is 2× this (96px phone → 152px desktop) */
+  section{ padding: clamp(48px, 5vw + 24px, 76px) 0; position: relative; }
   .sec-head{ margin-bottom: 48px; }
   .sec-eyebrow{ font-family: var(--ff-mono); font-size: 0.75rem; color: var(--accent-2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
   .sec-title{ font-family: var(--ff-display); font-size: clamp(1.7rem, 3.2vw, 2.3rem); font-weight: 700; }
@@ -681,7 +682,6 @@
 
   @media (max-width: 640px){
     .wrap{ padding: 0 20px; }
-    section{ padding: 70px 0; }
     header.hero{ padding-top: 110px; padding-bottom: 40px; }
     .cta-row{ flex-direction: column; align-items: stretch; }
     .cta-row .btn{ justify-content: center; }
