@@ -445,24 +445,48 @@
   }
   .device:hover .device-label{ color: var(--text); }
 
-  /* Shown only on small screens, where the gallery becomes a swipeable strip */
-  .swipe-hint{
-    display:none; margin: 0; padding: 0 20px 16px; border-bottom: 1px solid var(--panel-border);
-    font-family: var(--ff-mono); font-size: 0.66rem; color: var(--text-faint); letter-spacing: 0.04em; text-align: center;
-  }
+  /* Device switcher — tab bar built by script.js; only shown on small screens */
+  .device-switch{ display:none; }
 
-  /* Small screens: swipeable strip with equal-height frames */
   @media (max-width: 720px){
-    .device-gallery{
-      display:flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-      padding: 24px 20px 20px; border-bottom: 0;
-      scrollbar-width: none; -ms-overflow-style: none;
+    /* Without JS: a simple 2x2 grid, no horizontal scrolling */
+    .device-gallery{ grid-template-columns: 1fr 1fr; gap: 18px 14px; padding: 24px 20px 20px; }
+
+    /* With JS: one device at a time, switched from the tab bar or by swiping */
+    .js .device-showcase{
+      padding: 20px 20px 22px; border-bottom: 1px solid var(--panel-border);
+      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(var(--ink-rgb),0.07), transparent 70%);
     }
-    .device-gallery::-webkit-scrollbar{ display: none; }
-    .swipe-hint{ display:block; }
-    .device-gallery > li{ flex: 0 0 auto; scroll-snap-align: start; }
-    .device-screen img{ width: auto; height: 190px; }
-    .device-desktop .device-screen img, .device-laptop .device-screen img{ height: 150px; }
+    .js .device-switch{
+      display:flex; gap: 4px; padding: 4px; margin-bottom: 22px;
+      border: 1px solid var(--panel-border); border-radius: 14px; background: rgba(var(--ink-rgb),0.04);
+    }
+    .device-switch button{
+      flex: 1; min-width: 0; display:flex; flex-direction: column; align-items:center; gap: 4px;
+      padding: 8px 2px 7px; border: 0; border-radius: 10px; background: none; cursor: pointer;
+      color: var(--text-faint); font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.03em;
+      transition: background .25s ease, color .25s ease;
+    }
+    .device-switch button svg{ width: 18px; height: 18px; }
+    .device-switch button[aria-selected="true"]{ background: var(--text); color: var(--bg); }
+    .device-switch button:not([aria-selected="true"]):hover{ color: var(--text); }
+
+    .js .device-gallery{
+      display:block; position: relative; height: 252px; padding: 0; border-bottom: 0; background: none;
+      touch-action: pan-y;
+    }
+    .js .device-gallery > li{
+      position: absolute; inset: 0; display:flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transform: translateY(12px) scale(0.94);
+      transition: opacity .3s ease, transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear .45s;
+    }
+    .js .device-gallery > li.is-active{
+      opacity: 1; visibility: visible; transform: none;
+      transition: opacity .3s ease, transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s;
+    }
+    .js .device-screen img{ width: auto; height: 205px; }
+    .js .device-desktop .device-screen img, .js .device-laptop .device-screen img{ height: 160px; }
+    .js .device:hover{ transform: none; }
   }
 
   /* Lightbox */
