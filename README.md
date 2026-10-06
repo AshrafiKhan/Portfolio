@@ -8,7 +8,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 - Animated hero section with interactive code-card visual
 - Light/dark theme toggle with saved preference
 - Mobile navigation menu
-- Featured project case studies with anonymized, theme-aware wireframe illustrations (no client screenshots or links)
+- Featured project case studies: anonymized agency work shown with theme-aware wireframe illustrations, plus personal projects with responsive screenshot galleries (desktop, laptop, tablet, mobile), a lightbox viewer, and live demo links
 - Scroll reveal animations and animated statistics
 - Resume download links
 - SEO metadata and favicon support
@@ -31,6 +31,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 |-- script.js
 |-- favicon.svg
 |-- og-image.png
+|-- images/            # Personal project screenshots: <project>-{desktop,laptop,tablet,mobile}.jpg
 |-- Ashrafi_Khan_Resume.pdf
 `-- README.md
 ```
