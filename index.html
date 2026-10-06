@@ -329,7 +329,8 @@
               <span class="chip">HTML</span><span class="chip">CSS</span
               ><span class="chip">JavaScript</span
               ><span class="chip">Bootstrap</span
-              ><span class="chip">Tailwind CSS</span>
+              ><span class="chip">Tailwind CSS</span
+              ><span class="chip">GSAP</span>
             </div>
           </div>
           <div class="skill-card">
@@ -583,6 +584,79 @@
               </div>
             </div>
           </article>
+
+          <article class="feat-card reveal">
+            <ul class="device-gallery" aria-label="FoodieCafe landing page at different screen sizes">
+              <li>
+                <a class="device device-desktop" href="images/foodiecafe-desktop.jpg" data-caption="FoodieCafe · Desktop · 1920px">
+                  <span class="device-screen"><img src="images/foodiecafe-desktop.jpg" alt="FoodieCafe landing page on desktop" width="1600" height="900" loading="lazy" /></span>
+                  <span class="device-label">Desktop · 1920px</span>
+                </a>
+              </li>
+              <li>
+                <a class="device device-laptop" href="images/foodiecafe-laptop.jpg" data-caption="FoodieCafe · Laptop · 1366px">
+                  <span class="device-screen"><img src="images/foodiecafe-laptop.jpg" alt="FoodieCafe landing page on laptop" width="1366" height="768" loading="lazy" /></span>
+                  <span class="device-label">Laptop · 1366px</span>
+                </a>
+              </li>
+              <li>
+                <a class="device device-tablet" href="images/foodiecafe-tablet.jpg" data-caption="FoodieCafe · Tablet · 768px">
+                  <span class="device-screen"><img src="images/foodiecafe-tablet.jpg" alt="FoodieCafe landing page on tablet" width="768" height="1024" loading="lazy" /></span>
+                  <span class="device-label">Tablet · 768px</span>
+                </a>
+              </li>
+              <li>
+                <a class="device device-mobile" href="images/foodiecafe-mobile.jpg" data-caption="FoodieCafe · Mobile · 390px">
+                  <span class="device-screen"><img src="images/foodiecafe-mobile.jpg" alt="FoodieCafe landing page on mobile" width="780" height="1688" loading="lazy" /></span>
+                  <span class="device-label">Mobile · 390px</span>
+                </a>
+              </li>
+            </ul>
+            <div class="feat-body">
+              <div class="feat-head">
+                <div>
+                  <h3>FoodieCafe — Restaurant Landing Page</h3>
+                  <p class="feat-meta">Personal project · Fictional brand</p>
+                </div>
+                <div class="feat-actions">
+                  <a class="btn primary" href="https://ashrafikhan.github.io/FoodieCafe/" target="_blank" rel="noopener noreferrer"
+                    >Live Demo<span class="visually-hidden"> (opens in a new tab)</span></a
+                  >
+                </div>
+              </div>
+              <ul class="feat-focus" aria-label="Focus areas">
+                <li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">Vanilla JavaScript</li><li class="chip">GSAP</li><li class="chip">ScrollTrigger &amp; Flip</li><li class="chip">Lenis</li><li class="chip">Responsive Design</li><li class="chip">Progressive Enhancement</li>
+              </ul>
+              <div class="feat-cols">
+                <div class="feat-block">
+                  <h4>Challenge</h4>
+                  <p>
+                    Design and build a bright, animation-heavy landing page for
+                    a fictional multi-cuisine food court, with rich motion and
+                    interactivity, while keeping it framework-free and fully
+                    usable when animations or JavaScript are unavailable.
+                  </p>
+                </div>
+                <div class="feat-block">
+                  <h4>My Contribution</h4>
+                  <ul>
+                    <li>Built a seven-section single-page site in static HTML, CSS and vanilla JavaScript, with no build step.</li>
+                    <li>Animated it with GSAP and Lenis: split-letter hero reveal, parallax photo collage, scroll-linked marquee, magnetic buttons and 3D card tilt.</li>
+                    <li>Built a 24-dish menu filtered by cuisine with GSAP Flip transitions, plus a detail modal for every dish.</li>
+                    <li>Added a live happy-hour countdown, count-up stats, a keyboard-navigable gallery lightbox and a validated booking form.</li>
+                  </ul>
+                </div>
+                <div class="feat-block">
+                  <h4>Highlights</h4>
+                  <ul>
+                    <li>Respects reduced-motion settings by skipping smooth scroll, animations and the preloader.</li>
+                    <li>Renders the full page even if the animation CDN or JavaScript fails.</li>
+                    <li>Plain static files that deploy to any host, live on GitHub Pages.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -766,6 +840,16 @@
     <a class="to-top" id="toTop" href="#top" aria-label="Back to top" title="Back to top">
       <img src="favicon.svg" alt="" width="44" height="44" />
     </a>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+      <figure class="lb-figure">
+        <img src="" alt="" />
+        <figcaption></figcaption>
+      </figure>
+      <button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>
+      <button type="button" class="lb-btn lb-prev" aria-label="Previous screenshot">&#8249;</button>
+      <button type="button" class="lb-btn lb-next" aria-label="Next screenshot">&#8250;</button>
+    </dialog>
 
     <script src="script.js"></script>
   </body>
