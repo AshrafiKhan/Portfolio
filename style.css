@@ -252,12 +252,6 @@
 
   .cta-row{ display:flex; gap: 14px; flex-wrap: wrap; }
 
-  .trust-line{
-    list-style: none; display:flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px;
-    font-family: var(--ff-mono); font-size: 0.76rem; color: var(--text-dim);
-  }
-  .trust-line li{ display:flex; align-items:center; gap: 7px; }
-  .trust-line li::before{ content: '✔'; color: var(--accent); font-size: 0.8em; }
   .btn{
     font-family: var(--ff-mono); font-size: 0.82rem; padding: 12px 22px; border-radius: 999px;
     border: 1px solid var(--panel-border); background: var(--panel); backdrop-filter: blur(10px);
