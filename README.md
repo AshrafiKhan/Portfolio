@@ -32,7 +32,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 |-- favicon.svg
 |-- og-image.png
 |-- images/            # Personal project screenshots: <project>-{desktop,laptop,tablet,mobile}.jpg
-|-- Ashrafi_Khan_Resume.pdf
+|-- Ashrafi_Pathan_Resume.pdf
 `-- README.md
 ```
 
@@ -51,7 +51,7 @@ This project can be deployed on any static hosting platform, including:
 - Vercel
 - Cloudflare Pages
 
-Before deploying, make sure the resume links in `index.html` match the resume PDF filename in the repository. The current resume file is `Ashrafi_Khan_Resume.pdf`.
+Before deploying, make sure the resume links in `index.html` match the resume PDF filename in the repository. The current resume file is `Ashrafi_Pathan_Resume.pdf`.
 
 ## Contact
 
