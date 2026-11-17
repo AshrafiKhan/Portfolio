@@ -14,7 +14,7 @@
 |---|---|
 | What it is | A single-page personal portfolio website for a WordPress developer |
 | Owner | Ashrafi Khan Pathan — WordPress Developer, Gujarat, India |
-| Current role | WordPress Developer (work from home) at MadeByAura, March 2024 – present |
+| Current role | WordPress Developer (work from home) at MadeByAura, March 2024 – November 2026 |
 | Live URL | https://ashrafikhan.github.io/Portfolio/ |
 | Source repository | https://github.com/AshrafiKhan/Portfolio (branch `main`) |
 | Hosting | GitHub Pages, deployed automatically from `main` |
@@ -40,7 +40,7 @@
 ├── script.js                  # All behavior: nav, reveals, counters, tilt, intro screen, theme toggle, gallery switcher, lightbox, nav scroll
 ├── favicon.svg                # "AK" monogram icon
 ├── og-image.png               # 1200×630 social preview image (binary, described below)
-├── Ashrafi_Pathan_Resume.pdf    # Downloadable resume (binary, described below)
+├── Ashrafi_Pathan_Wordpress_Resume.pdf    # Downloadable resume (binary, described below)
 ├── README.md                  # Short project readme
 └── images/                    # 12 project screenshots (binary, described below)
 ```
@@ -50,7 +50,7 @@
 | File(s) | Description |
 |---|---|
 | `og-image.png` | 1200×630 PNG used for link previews. Dark background with a faint grid; text: "GUJARAT, INDIA", "Ashrafi Khan Pathan", "WordPress Developer", "Figma-to-WordPress · Elementor Pro · ACF · WooCommerce", "ashrafikhan.github.io/Portfolio". |
-| `Ashrafi_Pathan_Resume.pdf` | Two-page text resume, downloaded by the "Download Resume" buttons. Contents mirror the site: summary, skills, experience, certifications, project highlights, education, languages. |
+| `Ashrafi_Pathan_Wordpress_Resume.pdf` | Two-page text resume, downloaded by the "Download Resume" buttons. Contents mirror the site: summary, skills, experience, certifications, project highlights, education, languages. |
 | `images/<project>-<viewport>.jpg` | Above-the-fold homepage screenshots of the three featured client sites, captured from the live sites. `<project>` is `home-matters`, `new-york-bagel` or `frangrowth`. `<viewport>` and pixel sizes: `desktop` 1600×900 (captured at 1920×1080, downscaled), `laptop` 1366×768, `tablet` 768×1024, `mobile` 780×1688 (390×844 viewport at 2× pixel density). JPEG quality 80, roughly 78–189 KB each. |
 
 ## 4. Page structure and content (top to bottom)
@@ -65,7 +65,7 @@
 | 5 | `#services` | Three numbered cards: 01 WordPress Development, 02 Website Optimization, 03 Content Management Systems. |
 | 6 | `#skills` | Five cards of skill chips: WordPress Development (Elementor Pro, ACF, WooCommerce, Custom Post Types); Frontend Development (HTML, CSS, JavaScript, Bootstrap, Tailwind CSS); Backend & Database (PHP, MySQL); Optimization & SEO (Performance Optimization, Technical SEO, Responsive Design); Tools (Git, ChatGPT, Claude Code, Gemini). |
 | 7 | `#projects` "Featured Projects" | Three large case-study cards, each with: a **responsive screenshot gallery** (desktop, laptop, tablet, mobile), project name, **View Live Website** button (new tab), and three columns **Challenge / My Contribution / Impact**. Projects: **Home Matters** (https://homematters.com/), **New York Bagel Co.** (https://newyorkbagel.com/), **FranGrowth** (https://frangrowth.com/). |
-| 8 | `#experience` | Vertical timeline of three roles: WordPress Developer (WFH) at MadeByAura (March 2024 – Present); Web Development Training at ConicPlex (Oct 2023 – Dec 2023); Web Developer Intern at HATKESH InfoTech Pvt. Ltd. (Dec 2022 – May 2023). |
+| 8 | `#experience` | Vertical timeline of three roles: WordPress Developer (WFH) at MadeByAura (March 2024 – November 2026); Web Development Training at ConicPlex (Oct 2023 – Dec 2023); Web Developer Intern at HATKESH InfoTech Pvt. Ltd. (Dec 2022 – May 2023). |
 | 9 | `#certifications` | Six certification rows, newest first (Feb 2024 to Sep 2023): Udemy courses and AT&T E-Learning UI/UX Basic. |
 | 10 | `#education` | B.Tech in Computer Engineering, BVM Engineering College, Gujarat, completed 2025; Languages: English, Hindi, Gujarati. |
 | 11 | `#contact` | Card: "Need Help With Your WordPress Website?", short pitch, buttons **Email Me** (mailto), **View LinkedIn** (new tab), **Download Resume**. |
@@ -375,7 +375,7 @@ Each file below is reproduced exactly as it is in the repository.
           <div class="cta-row">
             <a class="btn primary" href="#projects">View My Work</a>
             <a class="btn" href="#contact">Let's Talk</a>
-            <a class="btn" href="Ashrafi_Pathan_Resume.pdf" download>Download Resume</a>
+            <a class="btn" href="Ashrafi_Pathan_Wordpress_Resume.pdf" download>Download Resume</a>
           </div>
           <ul class="trust-line">
             <li>2.5+ Years Experience</li>
@@ -768,7 +768,7 @@ Each file below is reproduced exactly as it is in the repository.
             <div class="tl-card">
               <div class="tl-top">
                 <span class="tl-role">WordPress Developer (WFH)</span
-                ><span class="tl-date">March 2024 – Present</span>
+                ><span class="tl-date">March 2024 – November 2026</span>
               </div>
               <div class="tl-org">MadeByAura</div>
               <ul>
@@ -924,7 +924,7 @@ Each file below is reproduced exactly as it is in the repository.
               rel="noopener noreferrer"
               >View LinkedIn</a
             >
-            <a class="btn" href="Ashrafi_Pathan_Resume.pdf" download>Download Resume</a>
+            <a class="btn" href="Ashrafi_Pathan_Wordpress_Resume.pdf" download>Download Resume</a>
           </div>
         </div>
       </section>
@@ -2058,7 +2058,7 @@ A personal portfolio website for Ashrafi Khan Pathan, a WordPress Developer base
 |-- favicon.svg
 |-- og-image.png
 |-- images/            # Project screenshots: <project>-{desktop,laptop,tablet,mobile}.jpg
-|-- Ashrafi_Pathan_Resume.pdf
+|-- Ashrafi_Pathan_Wordpress_Resume.pdf
 `-- README.md
 ```
 
@@ -2077,7 +2077,7 @@ This project can be deployed on any static hosting platform, including:
 - Vercel
 - Cloudflare Pages
 
-Before deploying, make sure the resume links in `index.html` match the resume PDF filename in the repository. The current resume file is `Ashrafi_Pathan_Resume.pdf`.
+Before deploying, make sure the resume links in `index.html` match the resume PDF filename in the repository. The current resume file is `Ashrafi_Pathan_Wordpress_Resume.pdf`.
 
 ## Contact
 
